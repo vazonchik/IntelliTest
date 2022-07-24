@@ -1,24 +1,25 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
     static ArrayList<User> users = new ArrayList<>();
     static ArrayList<Product> products = new ArrayList<>();
+    static int countId = 1;
+
     public static void main(String[] args) throws Exception {
+        Console.start();
 
-        User user1 = new User(1, "Serhii", "Romanchuk", 55455);
-        User user2 = new User(2, "Anton", "Tsimbaliuk", 12147);
-        User user3 = new User(3, "Feofan", "Melnyk", 13);
 
-        Product potato = new Product(1, "Potato", 25.40);
-        Product cucumber = new Product(2, "Cucumber", 67.21);
-        Product tomato = new Product(3, "Tomato", 31.87);
+    }
 
-        users.add(user1);
-        users.add(user2);
-        users.add(user3);
-        products.add(potato);
-        products.add(cucumber);
-        products.add(tomato);
+    public static void addNewUser(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter throw gaps: first name, last name, sum of user's money");
+        String dataForAddNewUser = scanner.nextLine();
+
+        users.add(new User(countId, scanner.nextLine(), scanner.nextLine(), scanner.nextDouble()));
+        countId++;
+
     }
 
     public static void displayListOfUserProduct(int id){

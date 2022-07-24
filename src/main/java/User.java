@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class User {
     private int id;
@@ -7,12 +8,14 @@ public class User {
     private double amountOfMoney;
     private ArrayList<Product> boughtProducts = new ArrayList<>();
 
-    public User(int id, String firstName, String lastName, int amountOfMoney) {
+    public User(int id, String firstName, String lastName, double amountOfMoney) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.amountOfMoney = amountOfMoney;
     }
+
+
 
     public void buyProduct(Product product) throws Exception {
         if (this.getAmountOfMoney() - product.getPrice() < 0){
