@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Main {
     static ArrayList<User> users = new ArrayList<>();
@@ -8,18 +7,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception {
         Console.start();
-
-
-    }
-
-    public static void addNewUser(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter throw gaps: first name, last name, sum of user's money");
-        String dataForAddNewUser = scanner.nextLine();
-
-        users.add(new User(countId, scanner.nextLine(), scanner.nextLine(), scanner.nextDouble()));
-        countId++;
-
+        for (User user : users) System.out.println(user);
     }
 
     public static void displayListOfUserProduct(int id){
@@ -42,11 +30,11 @@ public class Main {
         }
     }
 
-    public static void displayListOfAllUsers(ArrayList<User> users){
+    public static void displayListOfAllUsers(){
         for(User user : users) System.out.println(user.getFirstName() + " " + user.getLastName());
     }
 
-    public static void displayListOfAllProducts(ArrayList<Product> products){
+    public static void displayListOfAllProducts(){
         for(Product product : products) System.out.println(product.getName() + " " + product.getName());
     }
 
