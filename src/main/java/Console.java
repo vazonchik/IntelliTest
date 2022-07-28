@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Console {
-    public static void start () throws Exception {
+    public static void start () {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Enter one of the follow command: \n" +
@@ -16,44 +16,45 @@ public class Console {
 
         String command = scanner.nextLine();
 
-        switch (command){
-            case "AddU":
+        switch (command) {
+            case "AddU" -> {
                 addNewUser();
                 scanner.close();
-                break;
-            case "AddP":
+            }
+            case "AddP" -> {
                 addNewProduct();
                 scanner.close();
-                break;
-            case "DelU":
+            }
+            case "DelU" -> {
                 deleteUser();
                 scanner.close();
-                break;
-            case "DelP":
+            }
+            case "DelP" -> {
                 deleteProduct();
                 scanner.close();
-                break;
-            case "DOU":
+            }
+            case "DOU" -> {
                 Main.displayListOfAllUsers();
                 scanner.close();
-                break;
-            case "DOP":
+            }
+            case "DOP" -> {
                 Main.displayListOfAllProducts();
                 scanner.close();
-                break;
-            case "DUBI":
+            }
+            case "DUBI" -> {
                 System.out.println("Enter user id");
                 Main.displayListOfUserProduct(scanner.nextInt());
                 scanner.close();
-                break;
-            case "DUPI":
+            }
+            case "DUPI" -> {
                 System.out.println("Enter product id");
                 Main.displayListOfBoughtProduct(scanner.nextInt());
                 scanner.close();
-                break;
-            default:
+            }
+            default -> {
                 System.out.println("Enter correct command");
                 start();
+            }
         }
     }
 
@@ -66,63 +67,43 @@ public class Console {
     }
 
     private static void addNewProduct() {
-
-    }
-
-    private static void addNewUser() throws Exception {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter throw gaps: first name, last name, sum of user's money");
-        String firstName = " ";
-        String lastName = " ";
-        double amountOfMoney = 0;
+        System.out.println("Enter throw gaps: name of product, cost of product");
+        String name;
+        double cost;
         String dataForAddNewUser = scanner.nextLine();
         String[] strings = dataForAddNewUser.split(" ");
-        if (strings.length != 3) throw new Exception("Enter correct data");
-
-        if (strings[0].equals("/W")) {
-            System.out.println("f");
-            addNewUser();
-            } else firstName = strings[0];
-        if (strings[1].equals("/W")) {
-            System.out.println("l");
-                addNewUser();
-            } else lastName = strings[1];
-        if (strings[2].equals("/D")) {
-            System.out.println("n");
-                addNewUser();
-            } else amountOfMoney = Double.parseDouble(strings[2]);
-
-//        try {
-//            if (strings[0].equals("/s")) {
-//                addNewUser();
-//            } else firstName = strings[0];
-//        }catch (Exception e){
-//            throw new Exception("Name doesn't consist not literal or numbers symbols");
-//        }
-//
-//        try {
-//            if (strings[1].equals("/s")) {
-//                addNewUser();
-//            } else lastName = strings[1];
-//        }catch (Exception e){
-//            throw new Exception("Lastname doesn't consist not literal or numbers symbols");
-//        }
-//
-//        try {
-//            if (!strings[2].equals("/d")) {
-//                addNewUser();
-//            } else amountOfMoney = Double.parseDouble(strings[2]);
-//        }catch (Exception e){
-//            throw new Exception("It mast be number");
-//        }
-
-//        if (!strings[2].equals("/[0-9]/")) {
-//            throw new Exception("It mast be number");
-//        } else amountOfMoney = Double.parseDouble(strings[2]);
-        Main.users.add(new User(Main.countId, firstName, lastName, amountOfMoney));
-        Main.countId++;
-
+        try {
+            name = strings[0];
+            cost = Double.parseDouble(strings[1]);
+            Main.products.add(new Product(Main.countProductId, name, cost));
+            Main.countProductId++;
+            start();
+        } catch (Exception e){
+            System.out.println("Enter correct data");
+            addNewProduct();
+        }
     }
 
+    private static void addNewUser() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter throw gaps: first name, last name, sum of user's money");
+        String firstName;
+        String lastName;
+        double amountOfMoney;
+        String dataForAddNewUser = scanner.nextLine();
+        String[] strings = dataForAddNewUser.split(" ");
 
+        try {
+            firstName = strings[0];
+            lastName = strings[1];
+            amountOfMoney = Double.parseDouble(strings[2]);
+            Main.users.add(new User(Main.countUserId, firstName, lastName, amountOfMoney));
+            Main.countUserId++;
+            start();
+        } catch (Exception e){
+            System.out.println("Enter correct data");
+            addNewUser();
+        }
+    }
 }

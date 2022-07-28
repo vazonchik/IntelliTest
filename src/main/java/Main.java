@@ -3,11 +3,12 @@ import java.util.ArrayList;
 public class Main {
     static ArrayList<User> users = new ArrayList<>();
     static ArrayList<Product> products = new ArrayList<>();
-    static int countId = 1;
+    static int countUserId = 1;
+    static int countProductId = 1;
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         Console.start();
-        for (User user : users) System.out.println(user);
+
     }
 
     public static void displayListOfUserProduct(int id){
